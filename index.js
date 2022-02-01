@@ -24,12 +24,21 @@ console.log('-------- Age --------')
 
 // You can make a date from almost any 
 // human readable string for example: 
-const bday = new Date('Sept 26, 1965')
+const bday = new Date('Nov 7, 1991')
 // Challenge: Calculate your age with JS
 const age = today - bday 
 console.log(age, '<- Age in ms')
 // Challenge: Calculate your age in secs, mins, hrs, days, years
-
+const secs = age / 1000
+console.log(secs, '<- Age in secs')
+const mins = secs / 60
+console.log(mins, '<- Age in mins')
+const hrs = mins / 60
+console.log(hrs, '< - age in hrs')
+const days = hrs / 24
+console.log(days, '<- age in days')
+const years = days / 365.25
+console.log(years, '<- age in years')
 
 console.log('-------- BDay --------')
 
