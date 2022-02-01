@@ -138,7 +138,7 @@ console.log('--------- Problem 2 --------')
 
 function orderDates(dates) {
   // orders the dates 
-  dates.sort(function(a, b){
+  dates.sort((a, b) => {
     const date1 = new Date(a)
     const date2 = new Date(b)
     
@@ -193,9 +193,12 @@ console.log('--------- Problem 4 --------')
 
 function whensYourParty(date, year) {
   // Find the day of the year for your birthday
+  let newbday = new Date(date)
+  newbday.setFullYear(year)
+  return days[newbday.getDay()]
 }
 
-whensYourParty(bday, 2022)
+console.log(whensYourParty(bday, 2022))
 
 // Stretch Goal: Return an array listing all 
 // the days when your birthday occured since 
