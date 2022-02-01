@@ -29,16 +29,16 @@ const bday = new Date('Nov 7, 1991')
 const age = today - bday 
 console.log(age, '<- Age in ms')
 // Challenge: Calculate your age in secs, mins, hrs, days, years
-const secs = age / 1000
-console.log(secs, '<- Age in secs')
-const mins = secs / 60
-console.log(mins, '<- Age in mins')
-const hrs = mins / 60
-console.log(hrs, '< - age in hrs')
-const days = hrs / 24
-console.log(days, '<- age in days')
-const years = days / 365.25
-console.log(years, '<- age in years')
+const ageSecs = age / 1000
+console.log(ageSecs, '<- Age in secs')
+const ageMins = ageSecs / 60
+console.log(ageMins, '<- Age in mins')
+const ageHrs = ageMins / 60
+console.log(ageHrs, '< - age in hrs')
+const ageDays = ageHrs / 24
+console.log(ageDays, '<- age in days')
+const ageYears = ageDays / 365.25
+console.log(ageYears, '<- age in years')
 
 console.log('-------- BDay --------')
 
@@ -54,11 +54,13 @@ const months = ['Jan','Feb','Mar','Apr','May','Jun', 'Jul','Aug','Sep','Oct','No
 // Shows the month for new years
 console.log(months[newYear.getMonth()])
 // Challenge: Show the month of your birthday
+const myBday = new Date(1991, 10, 7)
+console.log(months[myBday.getMonth()], '<- My birthday month')
 
 // Days of the week are also 0 indexed 0:Sun - 6:Sat 
 const days = ['Sun', 'Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat']
 // Challenge: Show the day of the week of your birthday
-
+console.log(days[myBday.getDay()], '<- My birthday day')
 
 console.log('-------- Data Offsets --------')
 
@@ -92,12 +94,21 @@ console.log('--------- Problem 1 --------')
 // offset is a number, the number days between dates returned
 
 function consecutiveDates(date, repeat, offset) {
-  // Your code here 
+  let dateArray = []
+  const initialDate = new Date(date)
+  dateArray.push(initialDate)
+
+  for (let i = 1; i < repeat; i++) {
+    let dateToAdd = new Date(initialDate)
+    dateToAdd.setDate(dateToAdd.getDate() + (offset * i))
+    dateArray.push(dateToAdd)
+  }
+  return dateArray
 }
 
 // Starting date 1/1/2019, repeat 4 times, return dates 
 // 3 days apart
-consecutiveDates(new Date(2019, 0, 1), 4, 3)
+console.log(consecutiveDates(new Date(2019, 0, 1), 4, 3))
 
 // Should return an array with dates:
 // 1. 1/1/2019 <- Starting date
@@ -127,10 +138,17 @@ console.log('--------- Problem 2 --------')
 
 function orderDates(dates) {
   // orders the dates 
+  dates.sort(function(a, b){
+    const date1 = new Date(a)
+    const date2 = new Date(b)
+    
+    return date1 - date2;
+})
+  return dates
   // returns a new array of ordered dates
 }
 
-orderDates([today, dueDate, startDate, bday, newYear])
+console.log(orderDates([today, dueDate, startDate, bday, newYear]))
 
 // [bday, startdate, duedate, newyear]
 
