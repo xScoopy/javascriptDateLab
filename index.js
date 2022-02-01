@@ -169,9 +169,19 @@ console.log('--------- Problem 3 --------')
 function nextDate(dates) {
   // find the date that will happen next in dates
   // return the next date
+  const now = Date.now()
+  let closestDate = Infinity
+  for (let i = 0; i < dates.length; i++) {
+    if (dates[i] > now) {
+      if (dates[i] < closestDate) {
+        closestDate = dates[i]
+      }
+    }
+  }
+  return `Your next appt is approximately ${Math.round((closestDate - now) / 1000 / 60 / 60 / 24)} days away`
 }
 
-nextDate([today, dueDate, startDate, bday, newYear])
+console.log(nextDate([today, dueDate, startDate, bday, newYear]))
 
 // Stretch Goal: Return a human readable string: 
 // Your next appointment is 3 days from now. 
